@@ -1,117 +1,72 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+const stats = [
+  { label: "剩余额度", value: "128", sub: "张图片", color: "#7c3aed" },
+  { label: "今日已生成", value: "23", sub: "张图片 · 2 个视频", color: "#2563eb" },
+  { label: "短剧项目", value: "3", sub: "个进行中", color: "#ec4899" },
+  { label: "素材库", value: "456", sub: "张素材", color: "#10b981" },
+];
+
+const quickActions = [
+  { icon: "🎨", title: "图片工作台", desc: "输入描述，立即生成产品图", href: "/image", border: "#c4b5fd" },
+  { icon: "🎬", title: "分镜工作台", desc: "剧本拆解、短剧制作", href: "/storyboard", border: "#93c5fd" },
+  { icon: "🔍", title: "提示词反推", desc: "看别人的图，反推怎么做", href: "/reverse", border: "#86efac" },
+];
+
+const usage = [
+  { label: "1K 图片", used: 23, total: 50, color: "linear-gradient(90deg, #8b5cf6, #6366f1)" },
+  { label: "2K 高清", used: 8, total: 20, color: "linear-gradient(90deg, #3b82f6, #06b6d4)" },
+  { label: "4K 超清", used: 2, total: 5, color: "linear-gradient(90deg, #ec4899, #f43f5e)" },
+  { label: "视频生成", used: 2, total: 5, color: "linear-gradient(90deg, #22c55e, #10b981)" },
+];
 
 export default function Dashboard() {
   return (
-    <div className="space-y-8">
+    <div style={{ maxWidth: "1100px" }}>
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">欢迎回来 👋</h1>
-        <p className="text-gray-500 mt-1">这里是你的创作控制台，额度、用量与快捷入口一目了然</p>
+      <div style={{ marginBottom: "32px" }}>
+        <h1 style={{ margin: 0, fontSize: "30px", fontWeight: 700, color: "#1a1a2e" }}>欢迎回来 👋</h1>
+        <p style={{ margin: "8px 0 0", fontSize: "15px", color: "#6b7280" }}>这里是你的创作控制台，额度、用量与快捷入口一目了然</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="border-gray-200">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-500">剩余额度</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold gradient-text">128</div>
-            <p className="text-xs text-gray-400 mt-1">张图片</p>
-          </CardContent>
-        </Card>
-        <Card className="border-gray-200">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-500">今日已生成</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-blue-600">23</div>
-            <p className="text-xs text-gray-400 mt-1">张图片 · 2 个视频</p>
-          </CardContent>
-        </Card>
-        <Card className="border-gray-200">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-500">短剧项目</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-pink-600">3</div>
-            <p className="text-xs text-gray-400 mt-1">个进行中</p>
-          </CardContent>
-        </Card>
-        <Card className="border-gray-200">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-500">素材库</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-green-600">456</div>
-            <p className="text-xs text-gray-400 mt-1">张素材</p>
-          </CardContent>
-        </Card>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px", marginBottom: "36px" }}>
+        {stats.map((s) => (
+          <div key={s.label} style={{ background: "#fff", borderRadius: "16px", padding: "24px", border: "1px solid #e5e7eb", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+            <p style={{ margin: 0, fontSize: "13px", color: "#9ca3af", fontWeight: 500 }}>{s.label}</p>
+            <p style={{ margin: "10px 0 4px", fontSize: "34px", fontWeight: 700, color: s.color }}>{s.value}</p>
+            <p style={{ margin: 0, fontSize: "12px", color: "#c0c4cc" }}>{s.sub}</p>
+          </div>
+        ))}
       </div>
 
       {/* Quick Actions */}
-      <div>
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">快捷入口</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <a href="/image" className="block">
-            <Card className="border-gray-200 hover:border-violet-300 hover:shadow-md transition-all cursor-pointer">
-              <CardContent className="p-6">
-                <div className="text-3xl mb-3">🎨</div>
-                <h3 className="font-semibold text-gray-900">图片工作台</h3>
-                <p className="text-sm text-gray-500 mt-1">输入描述，立即生成产品图</p>
-              </CardContent>
-            </Card>
+      <h2 style={{ margin: "0 0 16px", fontSize: "19px", fontWeight: 600, color: "#1a1a2e" }}>快捷入口</h2>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "16px", marginBottom: "36px" }}>
+        {quickActions.map((a) => (
+          <a key={a.title} href={a.href} style={{ display: "block", background: "#fff", borderRadius: "16px", padding: "28px", border: "1px solid #e5e7eb", textDecoration: "none", transition: "all 0.2s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+            <div style={{ fontSize: "36px", marginBottom: "14px" }}>{a.icon}</div>
+            <h3 style={{ margin: 0, fontSize: "17px", fontWeight: 600, color: "#1a1a2e" }}>{a.title}</h3>
+            <p style={{ margin: "8px 0 0", fontSize: "14px", color: "#9ca3af" }}>{a.desc}</p>
           </a>
-          <a href="/storyboard" className="block">
-            <Card className="border-gray-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer">
-              <CardContent className="p-6">
-                <div className="text-3xl mb-3">🎬</div>
-                <h3 className="font-semibold text-gray-900">分镜工作台</h3>
-                <p className="text-sm text-gray-500 mt-1">剧本拆解、短剧制作</p>
-              </CardContent>
-            </Card>
-          </a>
-          <a href="/reverse" className="block">
-            <Card className="border-gray-200 hover:border-green-300 hover:shadow-md transition-all cursor-pointer">
-              <CardContent className="p-6">
-                <div className="text-3xl mb-3">🔍</div>
-                <h3 className="font-semibold text-gray-900">提示词反推</h3>
-                <p className="text-sm text-gray-500 mt-1">看别人的图，反推怎么做</p>
-              </CardContent>
-            </Card>
-          </a>
-        </div>
+        ))}
       </div>
 
       {/* Usage */}
-      <Card className="border-gray-200">
-        <CardHeader>
-          <CardTitle className="text-gray-900">每日额度</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {[
-              { label: "1K 图片", used: 23, total: 50, color: "from-violet-500 to-indigo-500" },
-              { label: "2K 高清", used: 8, total: 20, color: "from-blue-500 to-cyan-500" },
-              { label: "4K 超清", used: 2, total: 5, color: "from-pink-500 to-rose-500" },
-              { label: "视频生成", used: 2, total: 5, color: "from-green-500 to-emerald-500" },
-            ].map((item) => (
-              <div key={item.label}>
-                <div className="flex justify-between text-sm mb-1.5">
-                  <span className="text-gray-500">{item.label}</span>
-                  <span className="font-medium text-gray-900">{item.used} / {item.total}</span>
-                </div>
-                <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <div
-                    className={`h-full rounded-full bg-gradient-to-r ${item.color} transition-all duration-500`}
-                    style={{ width: `${(item.used / item.total) * 100}%` }}
-                  />
-                </div>
+      <div style={{ background: "#fff", borderRadius: "16px", padding: "28px", border: "1px solid #e5e7eb", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+        <h2 style={{ margin: "0 0 24px", fontSize: "19px", fontWeight: 600, color: "#1a1a2e" }}>每日额度</h2>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          {usage.map((u) => (
+            <div key={u.label}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px" }}>
+                <span style={{ color: "#6b7280" }}>{u.label}</span>
+                <span style={{ fontWeight: 600, color: "#1a1a2e" }}>{u.used} / {u.total}</span>
               </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+              <div style={{ height: "10px", background: "#f3f4f6", borderRadius: "99px", overflow: "hidden" }}>
+                <div style={{ height: "100%", width: `${(u.used / u.total) * 100}%`, background: u.color, borderRadius: "99px" }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
