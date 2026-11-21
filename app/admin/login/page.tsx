@@ -16,7 +16,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <body style={{ margin: 0, padding: 0, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif", background: "#1a1a2e", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "#1a1a2e", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" }}>
       <div style={{ background: "#fff", borderRadius: "20px", padding: "48px 40px", width: "400px" }}>
         <div style={{ textAlign: "center", marginBottom: "32px" }}>
           <div style={{ fontSize: "48px", marginBottom: "12px" }}>⚙️</div>
@@ -41,6 +41,6 @@ export default function AdminLoginPage() {
           <a href="/login" style={{ fontSize: "12px", color: "#c0c4cc", textDecoration: "none" }}>← 返回用户登录</a>
         </div>
       </div>
-    </body>
+    </div>
   );
 }

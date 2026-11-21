@@ -26,7 +26,7 @@ export default function LoginPage() {
         });
         const data = await resp.json();
         if (data.success) {
-          localStorage.setItem("wb_auth", JSON.stringify({ type: "account", username: data.username || username.trim(), token: data.token }));
+          localStorage.setItem("wb_auth", JSON.stringify({ type: "account", username: data.username || username.trim(), token: data.token, balance: data.balance || 10 }));
           window.location.href = "/";
         } else {
           setError(data.error || "操作失败");
@@ -39,14 +39,13 @@ export default function LoginPage() {
   };
 
   return (
-    <body style={{ margin: 0, padding: 0, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" }}>
       <div style={{ background: "#fff", borderRadius: "20px", padding: "48px 40px", width: "420px", boxShadow: "0 20px 60px rgba(0,0,0,0.2)" }}>
         <div style={{ textAlign: "center", marginBottom: "32px" }}>
           <h1 style={{ margin: 0, fontSize: "28px", fontWeight: 700, background: "linear-gradient(135deg, #7c3aed, #6366f1)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>🔥 爆款工作台</h1>
           <p style={{ margin: "8px 0 0", color: "#9ca3af", fontSize: "14px" }}>AI 电商创作平台</p>
         </div>
 
-        {/* Tabs */}
         <div style={{ display: "flex", gap: "8px", marginBottom: "28px" }}>
           {[
             { key: "login" as const, label: "登录" },
@@ -72,7 +71,7 @@ export default function LoginPage() {
           <div style={{ marginBottom: "20px" }}>
             <label style={{ display: "block", fontSize: "13px", fontWeight: 500, color: "#4b5563", marginBottom: "6px" }}>API Key</label>
             <input value={apiKey} onChange={(e) => setApiKey(e.target.value)} placeholder="粘贴你的 API Key..." onKeyDown={(e) => e.key === "Enter" && handleSubmit()} style={{ width: "100%", padding: "12px 16px", borderRadius: "10px", border: "1px solid #e5e7eb", fontSize: "14px", boxSizing: "border-box", outline: "none", fontFamily: "monospace" }} />
-            <p style={{ margin: "8px 0 0", fontSize: "12px", color: "#9ca3af" }}>使用管理员分配的 API Key 直接登录，无需注册</p>
+            <p style={{ margin: "8px 0 0", fontSize: "12px", color: "#9ca3af" }}>使用管理员分配的 API Key 直接登录</p>
           </div>
         )}
 
@@ -86,6 +85,6 @@ export default function LoginPage() {
           <a href="/admin/login" style={{ fontSize: "12px", color: "#c0c4cc", textDecoration: "none" }}>管理员登录 →</a>
         </div>
       </div>
-    </body>
+    </div>
   );
 }
